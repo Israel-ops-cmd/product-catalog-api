@@ -26,6 +26,38 @@ function createUserRepository(newUser) {
     })
 }
 
+function findUserByUsername(username) {
+    return new Promise((res, rej) => {
+        db.get(`
+            SELECT id, username, email, password FROM users
+            WHERE username = ?
+            `, [username], (err, row) => {
+                if(err) {
+                    rej(err)
+                } else {
+                    res(row)
+                }
+            })
+    })
+}
+
+function findUserByEmail(email) {
+    return new Promise((res, rej) => {
+        db.get(`
+            SELECT id, username, email, password FROM users
+            WHERE email = ?
+            `, [email], (err, row) => {
+                if(err) {
+                    rej(err)
+                } else {
+                    res(row)
+                }
+            })
+    })
+}
+
 export default {
-    createUserRepository
+    createUserRepository,
+    findUserByUsername,
+    findUserByEmail
 }
