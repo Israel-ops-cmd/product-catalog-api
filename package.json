@@ -1,0 +1,25 @@
+{
+  "name": "product-catalog-api",
+  "version": "1.0.0",
+  "description": "API desenvolvida em Node.js para gerenciar um catálogo de produtos de mercado utilizando SQLite",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Israel-ops-cmd/product-catalog-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Israel-ops-cmd/product-catalog-api/issues"
+  },
+  "homepage": "https://github.com/Israel-ops-cmd/product-catalog-api#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}
