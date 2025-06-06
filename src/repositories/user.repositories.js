@@ -26,7 +26,7 @@ function createUserRepository(newUser) {
     })
 }
 
-function findUserByUsername(username) {
+function findUserByUsernameRepository(username) {
     return new Promise((res, rej) => {
         db.get(`
             SELECT id, username, email, password FROM users
@@ -41,7 +41,7 @@ function findUserByUsername(username) {
     })
 }
 
-function findUserByEmail(email) {
+function findUserByEmailRepository(email) {
     return new Promise((res, rej) => {
         db.get(`
             SELECT id, username, email, password FROM users
@@ -56,8 +56,39 @@ function findUserByEmail(email) {
     })
 }
 
+function findUserByIdRepository(id) {
+    return new Promise((res, rej) => {
+        db.get(`
+            SELECT id, username, email, password FROM users
+            WHERE id = ?
+            `, [id], (err, row) => {
+                if(err) {
+                    rej(err)
+                } else {
+                    res(row)
+                }
+            })
+    })
+}
+
+function findAllUserRepository() {
+    return new Promise((res, rej) => {
+        db.all(`
+            SELECT id, username, email, password FROM users
+            `, [], (err, rows) => {
+                if(err) {
+                    rej(err)
+                } else {
+                    res(rows)
+                }
+            })
+    })
+}
+
 export default {
     createUserRepository,
-    findUserByUsername,
-    findUserByEmail
+    findUserByUsernameRepository,
+    findUserByEmailRepository,
+    findUserByIdRepository,
+    findAllUserRepository
 }
