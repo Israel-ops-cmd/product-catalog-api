@@ -19,7 +19,19 @@ async function findAllUserController(req, res){
     }
 }
 
+async function updateUserController(req, res) {
+    const { id } = req.params
+    const newUser = req.body
+    try {
+        const user = await userService.updateUserService(newUser, id)
+        res.send({ user })
+    } catch(e) {
+        return res.status(400).send(e.message)
+    }
+}
+
 export default {
     createUserController,
-    findAllUserController
+    findAllUserController,
+    updateUserController
 }
