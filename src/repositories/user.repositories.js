@@ -112,11 +112,27 @@ function updateUserRepository(id, user) {
     })
 }
 
+async function deleteUserRepository(id) {
+    return new Promise((res, rej) => {
+        db.run(`
+            DELETE FROM users
+            WHERE id = ?
+            `, [id], (err) => {
+                if(err) {
+                    rej(err)
+                } else {
+                    res({ message: 'user deleted successfully', id})
+                }
+            })
+    })
+}
+
 export default {
     createUserRepository,
     findUserByUsernameRepository,
     findUserByEmailRepository,
     findUserByIdRepository,
     findAllUserRepository,
-    updateUserRepository
+    updateUserRepository,
+    deleteUserRepository
 }

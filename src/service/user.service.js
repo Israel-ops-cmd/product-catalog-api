@@ -29,8 +29,16 @@ async function updateUserService(newUser, userId) {
     return updateUser
 }
 
+async function deleteUserService(userId) {
+    const user = await userRepository.findUserByIdRepository(userId)
+    if(!user) throw new Error('User not found')
+    const { message } = await userRepository.deleteUserRepository(userId)
+    return message
+}
+
 export default {
     createUserService,
     findAllUserService,
-    updateUserService
+    updateUserService,
+    deleteUserService
 }
