@@ -13,7 +13,7 @@ async function createUserService (newUser) {
     const user = await userRepository.createUserRepository({ ...newUser, password: passHash})
     if(!user) throw new Error('Error creating user!')
     console.log(user.id)
-    const token= generateJWT(user.id)
+    const token = generateJWT(user.id)
     return token
 }
 
