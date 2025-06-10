@@ -8,5 +8,6 @@ const router = Router()
 router.post("/users", validate(userSchema), userController.createUserController)
 router.get("/users", userController.findAllUserController)
 router.patch("/users/:id", userController.updateUserController)
+router.delete("/users/:id", userController.deleteUserController)
 
 export default router
