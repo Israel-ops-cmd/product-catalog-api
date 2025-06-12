@@ -6,6 +6,11 @@ const userSchema = z.object({
     password: z.string().min(6, 'Password must be at least 6 characters long')
 })
 
+const userIdSchema = z.object({
+    id: z.number().int().positive('User ID must be a positive integer')
+})
+
 export {
-    userSchema
+    userSchema,
+    userIdSchema
 }

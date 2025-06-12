@@ -7,14 +7,18 @@ async function createUserService (newUser) {
     if(foundUserUsername) throw new Error('User already exists!')
     const foundUserEmail = await userRepository.findUserByEmailRepository(newUser.email)
     if(foundUserEmail) throw new Error('User already exists!')
-    const foundUserId = await userRepository.findUserByIdRepository(newUser.id)
-    if(foundUserId) throw new Error('User already exists')
     const passHash = await bcrypt.hash(newUser.password, 10)
     const user = await userRepository.createUserRepository({ ...newUser, password: passHash})
     if(!user) throw new Error('Error creating user!')
     console.log(user.id)
     const token = generateJWT(user.id)
     return token
+}
+
+async function findUserByIdService(id) {
+    const user = await userRepository.findUserByIdRepository(id)
+    if(!user) throw new Error('User not found!')
+    return user
 }
 
 async function findAllUserService () {
@@ -43,5 +47,6 @@ export default {
     createUserService,
     findAllUserService,
     updateUserService,
-    deleteUserService
+    deleteUserService,
+    findUserByIdService
 }
