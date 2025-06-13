@@ -2,7 +2,7 @@ import db from '../config/database.js'
 
 db.run(`
     CREATE TABLE IF NOT EXISTS products (
-        id INTEGER PRIMARY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         category TEXT NOT NULL,
         price REAL NOT NULL,
