@@ -10,3 +10,23 @@ db.run(`
         FOREIGN KEY (userId) REFERENCES users(id)
     )
     `)
+
+async function createProductRepository(newProduct, userId) {
+    return new Promise((res, rej) => {
+        const { name, category, price } = newProduct
+        db.run(`
+            INSERT INTO products (name, category, price, userId) VALUES (?, ?, ?, ?)
+            `, [name, category, price, userId], 
+            function (err) {
+                if(err) {
+                    rej(err)
+                } else {
+                    res({ id: this.lastID, ...newProduct})
+                }
+            })
+    })
+}
+
+export default {
+    createProductRepository
+}
