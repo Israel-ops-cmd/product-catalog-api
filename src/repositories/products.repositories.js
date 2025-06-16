@@ -98,10 +98,25 @@ async function deleteProductRepository(productId) {
     })
 }
 
+async function searchProductsRepository(search) {
+    return new Promise((res, rej) => {
+        db.all(`
+                SELECT * FROM products WHERE name LIKE ? OR category LIKE ?
+            `, [`%${search}%`, `%${search}%`], (err, rows) => {
+                if(err) {
+                    rej(err)
+                } else {
+                    res(rows)
+                }
+            })
+    })
+}
+
 export default {
     createProductRepository,
     findAllProductsRepository,
     findProductsByIdRepository,
     updateProductRepository,
-    deleteProductRepository
+    deleteProductRepository,
+    searchProductsRepository
 }
