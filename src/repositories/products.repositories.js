@@ -41,7 +41,22 @@ async function findAllProductsRepository() {
     })
 }
 
+async function findProductsByIdRepository(productId) {
+    return new Promise((res, rej) => {
+        db.get(`
+            SELECT * FROM products WHERE id = ?
+            `, [productId], (err, row) => {
+                if(err) {
+                    rej(err)
+                } else {
+                    res(row)
+                }
+            })
+    })
+}
+
 export default {
     createProductRepository,
-    findAllProductsRepository
+    findAllProductsRepository,
+    findProductsByIdRepository
 }
