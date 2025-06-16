@@ -55,8 +55,37 @@ async function findProductsByIdRepository(productId) {
     })
 }
 
+async function updateProductRepository(updatedProduct, productId) {
+    return new Promise((res, rej) => {
+        const fields = ['name', 'category', 'price']
+        let query = "UPDATE products SET "
+        const values = []
+
+        fields.forEach(field => {
+            if(updatedProduct[field] !== undefined) {
+                query += `${field} = ?,`
+                values.push(updatedProduct[field])
+            }
+        })
+
+        query = query.slice(0, -1)
+        query += "WHERE id = ?"
+        values.push(productId)
+
+        db.run(query, values, function(err) {
+            if(err) {
+                rej(err)
+            } else {
+                res({ id: productId, ...updatedProduct})
+            }
+        })
+
+    })
+}
+
 export default {
     createProductRepository,
     findAllProductsRepository,
-    findProductsByIdRepository
+    findProductsByIdRepository,
+    updateProductRepository
 }

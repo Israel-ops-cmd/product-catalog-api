@@ -30,8 +30,22 @@ async function findProductsByIdController(req, res) {
     }
 }
 
+async function updateProductController(req, res) {
+    const updatedProduct = req.body
+    const productId = req.params.id
+    const userId = req.userId
+
+    try {
+        const response = await productService.updateProductService(updatedProduct, productId, userId)
+        res.send(response)
+    } catch(e) {
+        res.status(400).send(e.message)
+    }
+}
+
 export default {
     createdProductController,
     findAllProductsController,
-    findProductsByIdController
+    findProductsByIdController,
+    updateProductController
 }
