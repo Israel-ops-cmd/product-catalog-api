@@ -6,4 +6,8 @@ const productSchema = z.object({
     price: z.string().regex(/^\d+([.,]\d{1,2})?$/, "Invalid Price!").transform((val) => Number(val.replace(',', '.')))
 })
 
-export { productSchema }
+const productIdSchema = z.object({
+    productId: z.number().int().positive('Product ID Must be a positive integer')
+})
+
+export { productSchema, productIdSchema }

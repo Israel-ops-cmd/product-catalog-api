@@ -19,7 +19,19 @@ async function findAllProductsController(req, res) {
         res.status(404).send(e.message)
     }
 }
+
+async function findProductsByIdController(req, res) {
+    const productId = req.params.id
+    try {
+        const product = await productService.findProductByIdService(productId)
+        res.send({ product })
+    } catch(e) {
+        res.status(404).send(e.message)
+    }
+}
+
 export default {
     createdProductController,
-    findAllProductsController
+    findAllProductsController,
+    findProductsByIdController
 }

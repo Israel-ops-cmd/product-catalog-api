@@ -11,7 +11,14 @@ async function findAllProductsService() {
     return products
 }
 
+async function findProductByIdService(productId) {
+    const product = await productRepository.findProductsByIdRepository(productId)
+    if(!product) throw new Error('Product not found!')
+    return product
+}
+
 export default {
     createProductService,
-    findAllProductsService
+    findAllProductsService,
+    findProductByIdService
 }
