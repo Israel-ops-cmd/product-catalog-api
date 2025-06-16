@@ -55,10 +55,21 @@ async function deleteProductController(req, res) {
     }
 }
 
+async function searchProductsController(req, res) {
+    const { search } = req.query
+    try {
+        const products = await productService.searchProductService(search)
+        res.send({ products })
+    } catch(e) {
+        res.status(400).send(e.message)
+    }
+}
+
 export default {
     createdProductController,
     findAllProductsController,
     findProductsByIdController,
     updateProductController,
-    deleteProductController
+    deleteProductController,
+    searchProductsController
 }

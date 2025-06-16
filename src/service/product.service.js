@@ -33,10 +33,17 @@ async function deleteProductService(productId, userId) {
     return response
 }
 
+async function searchProductService(search) {
+    if(!search) return await productRepository.findAllProductsRepository()
+    const products = await productRepository.searchProductsRepository(search)
+    return products
+}
+
 export default {
     createProductService,
     findAllProductsService,
     findProductByIdService,
     updateProductService,
-    deleteProductService
+    deleteProductService,
+    searchProductService
 }
