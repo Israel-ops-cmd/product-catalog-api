@@ -7,6 +7,7 @@ import { productSchema } from '../schema/product.schema.js'
 const router = Router()
 
 router.post("/products", validate(productSchema), authMiddleware, productController.createdProductController)
+router.get("/products", authMiddleware, productController.findAllProductsController)
 
 export default router
 

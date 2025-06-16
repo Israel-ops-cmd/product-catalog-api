@@ -27,6 +27,21 @@ async function createProductRepository(newProduct, userId) {
     })
 }
 
+async function findAllProductsRepository() {
+    return new Promise((res, rej) => {
+        db.all(`
+                SELECT * FROM products
+            `, [], (err, rows) => {
+                if(err) {
+                    rej(err)
+                } else {
+                    res(rows)
+                }
+            })
+    })
+}
+
 export default {
-    createProductRepository
+    createProductRepository,
+    findAllProductsRepository
 }

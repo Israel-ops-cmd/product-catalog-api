@@ -11,6 +11,15 @@ async function createdProductController(req, res) {
     }
 }
 
+async function findAllProductsController(req, res) {
+    try {
+        const products = await productService.findAllProductsService()
+        res.send({ products })
+    } catch(e) {
+        res.status(404).send(e.message)
+    }
+}
 export default {
-    createdProductController
+    createdProductController,
+    findAllProductsController
 }
