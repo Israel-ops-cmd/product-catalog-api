@@ -43,9 +43,22 @@ async function updateProductController(req, res) {
     }
 }
 
+async function deleteProductController(req, res) {
+    const productId = req.params.id
+    const userId = req.userId
+
+    try {
+        const response = await productService.deleteProductService(productId, userId)
+        res.send(response)
+    } catch(e) {
+        res.status(400).send(e.message)
+    }
+}
+
 export default {
     createdProductController,
     findAllProductsController,
     findProductsByIdController,
-    updateProductController
+    updateProductController,
+    deleteProductController
 }

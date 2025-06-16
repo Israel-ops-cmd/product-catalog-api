@@ -10,6 +10,7 @@ router.post("/products", validate(productSchema), authMiddleware, productControl
 router.get("/products", authMiddleware, productController.findAllProductsController)
 router.get("/products/:id", validateProductId, authMiddleware, productController.findProductsByIdController)
 router.patch("/products/:id", validateProductId, authMiddleware, productController.updateProductController)
+router.delete("/products/:id", validateProductId, authMiddleware, productController.deleteProductController)
 
 export default router
 

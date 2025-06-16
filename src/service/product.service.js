@@ -25,9 +25,18 @@ async function updateProductService(updatedProduct, productId, userId) {
     return response
 }
 
+async function deleteProductService(productId, userId) {
+    const product = await productRepository.findProductsByIdRepository(productId)
+    if(!product) throw new Error('Product not found!')
+    if(product.userId !== userId) throw new Error('Unauthorized')
+    const response = await productRepository.deleteProductRepository(productId)
+    return response
+}
+
 export default {
     createProductService,
     findAllProductsService,
     findProductByIdService,
-    updateProductService
+    updateProductService,
+    deleteProductService
 }
