@@ -83,9 +83,25 @@ async function updateProductRepository(updatedProduct, productId) {
     })
 }
 
+async function deleteProductRepository(productId) {
+    return new Promise((res, rej) => {
+        db.run(`
+                DELETE FROM products
+                WHERE id = ?
+            `, [productId], (err) => {
+                if(err) {
+                    rej(err)
+                } else {
+                    res({ message: 'Produtc deleted sucessfully', productId})
+                }
+            })
+    })
+}
+
 export default {
     createProductRepository,
     findAllProductsRepository,
     findProductsByIdRepository,
-    updateProductRepository
+    updateProductRepository,
+    deleteProductRepository
 }
