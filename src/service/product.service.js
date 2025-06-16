@@ -17,8 +17,17 @@ async function findProductByIdService(productId) {
     return product
 }
 
+async function updateProductService(updatedProduct, productId, userId) {
+    const product = await productRepository.findProductsByIdRepository(productId)
+    if(!product) throw new Error('Product not found!')
+    if(product.userId !== userId) throw new Error('Unauthorized!')
+    const response = await productRepository.updateProductRepository(updatedProduct, productId)
+    return response
+}
+
 export default {
     createProductService,
     findAllProductsService,
-    findProductByIdService
+    findProductByIdService,
+    updateProductService
 }

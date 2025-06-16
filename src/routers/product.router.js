@@ -9,6 +9,7 @@ const router = Router()
 router.post("/products", validate(productSchema), authMiddleware, productController.createdProductController)
 router.get("/products", authMiddleware, productController.findAllProductsController)
 router.get("/products/:id", validateProductId, authMiddleware, productController.findProductsByIdController)
+router.patch("/products/:id", validateProductId, authMiddleware, productController.updateProductController)
 
 export default router
 
