@@ -1,8 +1,14 @@
 import productRepository from '../repositories/products.repositories.js'
+import userRepository from '../repositories/user.repositories.js'
+import sendEmail from '../service/email.service.js'
 
 async function createProductService(newProduct, userId) {
     const createdProduct = await productRepository.createProductRepository(newProduct, userId)
     if(!createdProduct) throw new Error('Error creating product!')
+    const user = await userRepository.findUserByIdRepository(userId)
+    if(user && user.email) {
+        sendEmail(user.email, createdProduct.name)
+    }
     return createdProduct
 }
 
