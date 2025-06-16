@@ -6,6 +6,12 @@ async function createProductService(newProduct, userId) {
     return createdProduct
 }
 
+async function findAllProductsService() {
+    const products = await productRepository.findAllProductsRepository()
+    return products
+}
+
 export default {
-    createProductService
+    createProductService,
+    findAllProductsService
 }
