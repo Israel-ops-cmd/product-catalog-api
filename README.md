@@ -118,6 +118,6 @@ O servidor estará rodando em:
 ## 👨‍💻 Autor
 Feito por Israel Felipe
 
-🔗 [LinkedIn](www.linkedin.com/in/israelbrands)
+🔗 [LinkedIn](https://www.linkedin.com/in/israelbrands/)
 🔗 [GitHub](https://github.com/Israel-ops-cmd)
 
