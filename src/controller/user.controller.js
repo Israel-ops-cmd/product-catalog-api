@@ -1,6 +1,9 @@
+// Importa os serviços responsáveis pela regra de negócio
 import userService from "../service/user.service.js"
 import { loginService } from '../service/auth.service.js'
 
+// Controller responsável por criar um novo usuário
+// Recebe os dados do corpo da requisição e retorna um token JWT
 async function createUserController(req, res) {
     const newUser = req.body
     try {
@@ -11,6 +14,9 @@ async function createUserController(req, res) {
     }
 }
 
+// Controller responsável por realizar o login
+// Recebe email e senha no corpo da requisição
+// Retorna um token JWT se a autenticação for bem-sucedida
 async function loginUserController(req, res) {
     const { email, password } = req.body
     try {
@@ -21,6 +27,7 @@ async function loginUserController(req, res) {
     }
 }
 
+// Controller que retorna todos os usuários cadastrados
 async function findAllUserController(req, res){
     try {
         const users = await userService.findAllUserService()
@@ -30,6 +37,7 @@ async function findAllUserController(req, res){
     }
 }
 
+// Controller que busca um usuário específico pelo ID (parâmetro da rota)
 async function findUserByIdController(req, res) {
     const { id } = req.params
     try {
@@ -40,6 +48,8 @@ async function findUserByIdController(req, res) {
     }
 }
 
+// Controller que atualiza os dados de um usuário pelo ID
+// Recebe os novos dados no corpo da requisição
 async function updateUserController(req, res) {
     const { id } = req.params
     const newUser = req.body
@@ -51,6 +61,7 @@ async function updateUserController(req, res) {
     }
 }
 
+// Controller que deleta um usuário específico pelo ID
 async function deleteUserController(req, res) {
     const { id } = req.params
     try {
