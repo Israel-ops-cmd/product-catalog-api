@@ -113,7 +113,8 @@ npm run dev
 
 O servidor estará rodando em:
 
-👉 http://localhost:3001
+👉 Ambiente local: http://localhost:3001  
+👉 Ambiente de produção (deploy): https://product-catalog-api-g6vx.onrender.com/
 
 ## 👨‍💻 Autor
 Feito por Israel Felipe

@@ -10,6 +10,13 @@ import productRouters from './product.router.js'
 // Cria uma instância do Router
 const routers = Router()
 
+// Rota raiz, para mensagem amigável
+routers.get('/', (req, res) => {
+  res.json({
+    message: 'API Product Catalog está no ar! Para acessar os recursos, faça login e use o token JWT nas requisições protegidas.'
+  })
+})
+
 // Todas as rotas que começarem com /users serão tratadas dentro do arquivo user.router.js
 // Exemplo: POST /users, GET /users/:id, etc.
 routers.use('/users', userRouters)
